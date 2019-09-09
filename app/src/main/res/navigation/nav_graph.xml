@@ -3,22 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/contactListFragment">
+    app:startDestination="@id/tutorialFragment">
+
+    <fragment
+        android:id="@+id/tutorialFragment"
+        android:name="com.example.pc.photoshelterapp.ui.tutorial.TutorialParentFragment"
+        android:label="Tutorial Parent Fragment"
+        tools:layout="@layout/fragment_contact_list">
+
+        <action
+            android:id="@+id/goToContactListFragment"
+            app:destination="@id/contactListFragment"
+            app:popUpTo="@+id/tutorialFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/contactListFragment"
         android:name="com.example.pc.photoshelterapp.ui.contacts.ContactListFragment"
         android:label="Contact List Fragment"
         tools:layout="@layout/fragment_contact_list">
+
         <action
             android:id="@+id/goToContactDetailsFragment"
             app:destination="@id/contactDetailsFragment" />
+
 
     </fragment>
 
     <fragment
         android:id="@+id/contactDetailsFragment"
         android:name="com.example.pc.photoshelterapp.ui.contacts.ContactDetailsFragment"
-        android:label="ContactDetailsFragment" />
+        android:label="Contact Details Fragment" />
 
 </navigation>

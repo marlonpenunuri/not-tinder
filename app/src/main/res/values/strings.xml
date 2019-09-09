@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PhotoShelterApp</string>
+
+    <string-array name="tutorialSteps">
+        <item>"Welcome to the best application ever"</item>
+        <item>"This is a very important tutorial"</item>
+        <item>"You can swipe to delete. Press the button"</item>
+    </string-array>
 </resources>

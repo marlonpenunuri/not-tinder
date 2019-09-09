@@ -10,7 +10,7 @@ interface ContactsApiService {
     @GET(".")
     suspend fun getContactsList(
         @Query("page") page: Int = 1,
-        @Query("results") results: Int = 15,
+        @Query("results") results: Int = 5,
         @Query("inc") inc: String = "name,gender,email,picture"
     ): Response<ContactListEntity>
 }
