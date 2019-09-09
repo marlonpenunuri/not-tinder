@@ -15,13 +15,8 @@ import dagger.Binds
 class MainActivityModule {
 
     @Provides
-    fun provideMainView(mainActivity: MainActivity): MainActivity {
-        return mainActivity
+    fun provideContactsViewModel(main: MainActivity, viewModelFactory: ViewModelProvider.Factory): ContactsViewModel {
+        return ViewModelProviders.of(main, viewModelFactory).get(ContactsViewModel::class.java)
     }
-
-//    @Provides
-//    fun provideContactViewModel(mainActivity: MainActivity): ContactsViewModel {
-//        return ViewModelProviders.of(this)[MyViewModel::class.java]
-//    }
 
 }

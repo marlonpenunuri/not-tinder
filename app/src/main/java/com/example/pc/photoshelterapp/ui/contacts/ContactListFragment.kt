@@ -23,47 +23,50 @@ class ContactListFragment: DaggerFragment() {
     lateinit var mContactsViewModel: ContactsViewModel
     private lateinit var viewDataBinding: FragmentContactListBinding
 
+    private lateinit var searchView: MenuItem
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewDataBinding = FragmentContactListBinding.inflate(inflater, container, false).apply {
+        viewDataBinding = FragmentContactListBinding.inflate(inflater, null, false).apply {
             viewModel = mContactsViewModel
-            adapter = ContactListAdapter(mContactsViewModel ){}
-            lifecycleOwner = lifecycleOwner
+            adapter = ContactListAdapter(mContactsViewModel ){ emptyList(it) }
+            lifecycleOwner = this@ContactListFragment
         }
         setHasOptionsMenu(true)
         return viewDataBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         setObservers()
-        viewDataBinding.viewModel?.getContacts()
+        setEvents()
+        if(viewDataBinding.viewModel?.contactList?.value.isNullOrEmpty()){
+            viewDataBinding.viewModel?.getContacts()
+        }
+        viewDataBinding.viewModel?.setToolbarTitle("Contacts")
     }
 
     private fun setObservers(){
         mContactsViewModel.run {
             contactList.observe(viewLifecycleOwner, Observer {
-                viewDataBinding.adapter?.submitList(it)
+                val sortedList = viewDataBinding.adapter?.sortList(it)
+                viewDataBinding.adapter?.submitList(sortedList)
             })
 
             refreshingList.observe(viewLifecycleOwner, Observer {
                 swipeRefreshLayout.isRefreshing = it
             })
 
-            eventGoToDetail.observe(viewLifecycleOwner, Observer<Event<ContactEntity>> { event ->
-                event.getContentIfNotHandled()?.let {
-                    val extras = FragmentNavigatorExtras(
-                        userImageView to "userImageView",
-                        userNameView to "userNameView")
-                    findNavController().navigate(R.id.goToContactDetailsFragment,
-                        bundleOf("contact" to it), // Bundle of args
-                        null, // NavOptions
-                        extras)
-                }
-            })
         }
+    }
 
+    private fun setEvents(){
         swipeRefreshLayout.setOnRefreshListener {
-           mContactsViewModel.resetList()
+            searchView.collapseActionView()
+            viewDataBinding.adapter?.clearFilter()
+            viewDataBinding.viewModel?.resetList()
+            viewDataBinding.viewModel?.getContacts()
         }
     }
 
@@ -72,7 +75,7 @@ class ContactListFragment: DaggerFragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_searchbar, menu)
 
-        val searchView = menu.findItem(R.id.menu_nav_search_bar)
+        searchView = menu.findItem(R.id.menu_nav_search_bar)
         val searchItem = searchView.actionView as SearchView
 
         searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -80,13 +83,25 @@ class ContactListFragment: DaggerFragment() {
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                viewDataBinding.adapter
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewDataBinding.adapter?.filter(newText)
                 return true
             }
 
         })
 
+    }
+
+    private fun emptyList(isEmpty: Boolean) {
+        view?.let {
+            if (isEmpty) {
+                locationsListEmpty.visibility = View.VISIBLE
+                contactsRecycler.visibility = View.INVISIBLE
+            } else {
+                locationsListEmpty.visibility = View.INVISIBLE
+                contactsRecycler.visibility = View.VISIBLE
+            }
+        }
     }
 
 }

@@ -10,6 +10,10 @@
             type="com.example.pc.photoshelterapp.domain.entities.ContactEntity" />
 
         <variable
+            name="liked"
+            type="Boolean" />
+
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
 
@@ -39,7 +43,7 @@
             <ImageView
                 android:id="@+id/userImageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:transitionName="imageTransition"
                 app:layout_constraintBottom_toTopOf="@+id/userNameView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,12 +52,24 @@
                 tools:ignore="ContentDescription"
                 tools:srcCompat="@tools:sample/avatars" />
 
+            <ImageView
+                android:id="@+id/likeBtn"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_happy_face"
+                android:onClick="@{clickListener}"
+                android:tint="@{liked ? @color/colorAccent : @color/gray}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription" />
+
             <TextView
                 android:id="@+id/userNameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:transitionName="nameTransition"
-                android:text="@{contact.name.title + ' ' + contact.name.first + ' ' + contact.name.last }"
+                android:text="@{contact.name.first + ' ' + contact.name.last }"
+                tools:text="User Name"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

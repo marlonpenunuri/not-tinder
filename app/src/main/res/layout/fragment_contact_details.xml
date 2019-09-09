@@ -34,7 +34,6 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:transitionName="userImageView"
-
             app:layout_constraintBottom_toBottomOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,25 +45,38 @@
             android:id="@+id/userNameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Nombre del usuario"
-            android:transitionName="userNameView"
+            android:layout_margin="16dp"
+            android:gravity="center"
             android:text="@{contact.name.title + ' ' + contact.name.first + ' ' + contact.name.last }"
             android:textSize="40sp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/userImageView"
-            app:layout_constraintStart_toStartOf="@+id/userImageView"
-            app:layout_constraintTop_toBottomOf="@+id/userImageView" />
+            android:transitionName="userNameView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userImageView"
+            tools:text="User's Names" />
 
         <TextView
-            android:id="@+id/userAgeView"
+            android:id="@+id/userEmailView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Nombre del usuario"
+            tools:text="User's Email"
             android:text="@{contact.email}"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/userNameView"
             app:layout_constraintStart_toStartOf="@+id/userNameView"
             app:layout_constraintTop_toBottomOf="@+id/userNameView" />
+
+        <TextView
+            android:id="@+id/userCellView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="3320 547484"
+            android:text="@{contact.email}"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/userEmailView"
+            app:layout_constraintStart_toStartOf="@+id/userEmailView"
+            app:layout_constraintTop_toBottomOf="@+id/userEmailView" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

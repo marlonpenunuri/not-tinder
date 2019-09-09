@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import androidx.transition.ChangeBounds
 import com.example.pc.photoshelterapp.databinding.FragmentContactDetailsBinding
+import com.example.pc.photoshelterapp.util.CropCircleTransformation
 import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_contact_details.*
@@ -36,7 +37,7 @@ class ContactDetailsFragment: DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
-        Picasso.get().load(arguments.contact.picture.large).into(userImageView)
+        Picasso.get().load(arguments.contact.picture.large).transform(CropCircleTransformation()).into(userImageView)
     }
 
     override fun onDestroy() {

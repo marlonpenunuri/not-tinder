@@ -23,6 +23,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contactsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnCount="2"
@@ -33,6 +34,13 @@
                 tools:itemCount="15"
                 tools:listitem="@layout/item_contact" />
 
+            <TextView
+                android:id="@+id/locationsListEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="List Empty"
+                android:visibility="gone" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -17,10 +17,8 @@ open class BaseApiCall {
         try {
             val response = call.invoke()
             if (!response.isSuccessful) {
-                return Error("Error")
+                return Error(response.message())
 //                val error = parseError(response)
-//                return when (error.status) {
-//                    else -> Error("Error")
 //                }
             }
             return Success(response.body())

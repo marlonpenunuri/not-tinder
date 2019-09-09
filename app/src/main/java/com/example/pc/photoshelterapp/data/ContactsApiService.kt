@@ -12,6 +12,6 @@ interface ContactsApiService {
         @Query("seed") seed: String = "foobar",
         @Query("page") page: Int = 1,
         @Query("results") results: Int = 25,
-        @Query("inc") inc: String = "name,gender,email,picture"
+        @Query("inc") inc: String = "name,gender,email,picture,cell"
     ): Response<ContactListEntity>
 }

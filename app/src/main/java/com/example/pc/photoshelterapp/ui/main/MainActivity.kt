@@ -18,7 +18,7 @@ class MainActivity: DaggerAppCompatActivity() {
 
     @Inject
     lateinit var mContactsViewModel: ContactsViewModel
-    private val navController: NavController by lazy { findNavController(R.id.mainActivityLayout) }
+    private val navController: NavController by lazy { findNavController(R.id.contactsNavigationFragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_NoActionBar)
@@ -36,21 +36,13 @@ class MainActivity: DaggerAppCompatActivity() {
                 toolbar.title = it
             })
 
-            dataLoading.observe(this@MainActivity, Observer { show ->
-//                if (show) {
-//                    progressBar.show()
-//                } else {
-//                    progressBar.dismiss()
-//                }
-            })
-
             snackbarText.observe(this@MainActivity, Observer<Event<String>> { event ->
                 event.getContentIfNotHandled()?.let {
                     Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()
                 }
             })
 
-            eventGoToDetail.observe(this@MainActivity, Observer<Event<ContactEntity>> { event ->
+            eventGoToDetail.observe(this@MainActivity, Observer<Event<ContactEntity?>> { event ->
                 event.getContentIfNotHandled()?.let {
                     navController.navigate(R.id.contactDetailsFragment, bundleOf("contact" to it))
                 }
