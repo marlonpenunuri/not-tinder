@@ -8,10 +8,8 @@ class ContactsInteractor @Inject constructor(
     private val contactsRepository: ContactsRepository
 ) {
 
-
-
-    suspend fun getContactsList(): ParseResult {
-        return contactsRepository.getContactsList()
+    suspend fun getContactsList(page: Int): ParseResult {
+        return contactsRepository.getContactsList(page)
     }
 
     suspend fun getContactDetails(): ParseResult {

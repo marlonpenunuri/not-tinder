@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pc.photoshelterapp.databinding.ItemContactBinding
 import com.example.pc.photoshelterapp.domain.entities.ContactEntity
 import com.google.gson.JsonObject
+import com.squareup.picasso.Picasso
 
 class ContactListAdapter(
-    private var homeViewModel: ContactsViewModel,
+    private var contactsViewModel: ContactsViewModel,
     private val isEmptyList: ((Boolean) -> Unit)? = null
 ) : ListAdapter<ContactEntity, ContactListAdapter.ContactsViewHolder>(DIFF_UTIL) {
 
@@ -39,7 +40,7 @@ class ContactListAdapter(
     override fun onBindViewHolder(holder: ContactsViewHolder, pos: Int) {
         val item = getItem(pos)
         holder.setData(item)
-        if (pos == itemCount - 1) holder.loadNextElements(item)
+        if (pos == itemCount - 6) holder.loadNextElements(item)
     }
 
 //    fun filter(query: String) {
@@ -63,15 +64,19 @@ class ContactListAdapter(
         fun setData(item: ContactEntity) {
             with(binding){
                 clickListener = View.OnClickListener {
-                    homeViewModel.goToContactDetails()
+                    contactsViewModel.goToContactDetails(item)
+                }
+                longClickListener = View.OnLongClickListener {
+                    contactsViewModel.removeContact(item)
+                    return@OnLongClickListener true
                 }
                 contact = item
+                Picasso.get().load(item.picture.medium).into(userImageView)
             }
         }
 
         fun loadNextElements(item: ContactEntity) {
-//            if (!linksActualPage.has("next")) return
-//            homeViewModel.getLocationListByURL()
+            contactsViewModel.nextPage()
         }
     }
 

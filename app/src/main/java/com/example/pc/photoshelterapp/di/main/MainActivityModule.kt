@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 import com.example.pc.photoshelterapp.ui.main.MainActivity
-
+import dagger.Binds
 
 
 @Module

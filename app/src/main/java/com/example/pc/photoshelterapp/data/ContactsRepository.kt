@@ -7,8 +7,8 @@ class ContactsRepository @Inject constructor(
 ) : ContactsDataSource {
 
 
-    override suspend fun getContactsList():ParseResult  {
-        return remoteDataSource.getContactsList()
+    override suspend fun getContactsList(page: Int):ParseResult  {
+        return remoteDataSource.getContactsList(page)
     }
 
     override suspend fun getContactDetails():ParseResult  {

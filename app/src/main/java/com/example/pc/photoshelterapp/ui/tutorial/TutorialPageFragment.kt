@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.pc.photoshelterapp.R
 import com.example.pc.photoshelterapp.databinding.FragmentTutorialPageBinding
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_tutorial_page.*
 
-class TutorialPageFragment : Fragment() {
+class TutorialPageFragment : DaggerFragment() {
 
 
     companion object {

@@ -13,6 +13,10 @@
             name="clickListener"
             type="android.view.View.OnClickListener" />
 
+        <variable
+            name="longClickListener"
+            type="android.view.View.OnLongClickListener" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -27,26 +31,30 @@
             android:id="@+id/userCardLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="8dp"
+            app:onLongClickListener= "@{longClickListener}"
             android:onClick="@{clickListener}"
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/userImageView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:transitionName="imageTransition"
                 app:layout_constraintBottom_toTopOf="@+id/userNameView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription"
-                app:profileImage="@{contact.picture.thumbnail}" />
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/userNameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{contact.name.title + contact.name.first + contact.name.last }"
+                android:transitionName="nameTransition"
+                android:text="@{contact.name.title + ' ' + contact.name.first + ' ' + contact.name.last }"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

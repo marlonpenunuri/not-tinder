@@ -6,17 +6,67 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.example.pc.photoshelterapp.ui.contacts.ContactsViewModel" />
+            name="contact"
+            type="com.example.pc.photoshelterapp.domain.entities.ContactEntity" />
 
     </data>
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Detalle"/>
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".30"/>
+
+        <ImageView
+            android:id="@+id/userImageView"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:transitionName="userImageView"
+
+            app:layout_constraintBottom_toBottomOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:srcCompat="@tools:sample/avatars" />
 
 
+        <TextView
+            android:id="@+id/userNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Nombre del usuario"
+            android:transitionName="userNameView"
+            android:text="@{contact.name.title + ' ' + contact.name.first + ' ' + contact.name.last }"
+            android:textSize="40sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/userImageView"
+            app:layout_constraintStart_toStartOf="@+id/userImageView"
+            app:layout_constraintTop_toBottomOf="@+id/userImageView" />
+
+        <TextView
+            android:id="@+id/userAgeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Nombre del usuario"
+            android:text="@{contact.email}"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/userNameView"
+            app:layout_constraintStart_toStartOf="@+id/userNameView"
+            app:layout_constraintTop_toBottomOf="@+id/userNameView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

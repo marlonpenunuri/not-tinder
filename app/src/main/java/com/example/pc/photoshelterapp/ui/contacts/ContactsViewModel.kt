@@ -1,5 +1,6 @@
 package com.example.pc.photoshelterapp.ui.contacts
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,17 +19,25 @@ class ContactsViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _eventGoToDetail = MutableLiveData<Event<Unit>>()
-    val eventGoToDetail: LiveData<Event<Unit>>
+    private val _eventGoToDetail = MutableLiveData<Event<ContactEntity>>()
+    val eventGoToDetail: LiveData<Event<ContactEntity>>
         get() = _eventGoToDetail
 
-    private val _contactList = MutableLiveData<List<ContactEntity>>()
-    val contactList: LiveData<List<ContactEntity>>
+    private val _contactList = MutableLiveData<MutableList<ContactEntity>>()
+    val contactList: LiveData<MutableList<ContactEntity>>
         get() = _contactList
+
+    private val _contactListPage = MutableLiveData<Int>().apply{value = 1}
+    val contactListPage: LiveData<Int>
+        get() = _contactListPage
 
     private val _contactDetail = MutableLiveData<ContactDetailEntity>()
     val contactDetail: LiveData<ContactDetailEntity>
         get() = _contactDetail
+
+    private val _refreshingList = MutableLiveData<Boolean>()
+    val refreshingList: LiveData<Boolean>
+        get() = _refreshingList
 
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean>
@@ -47,40 +56,41 @@ class ContactsViewModel @Inject constructor(
     fun getContacts() {
         viewModelScope.launch {
             _dataLoading.value = true
-            when (val response = contactsInteractor.getContactsList()) {
+            when (val response = contactsInteractor.getContactsList(_contactListPage.value ?: 1)) {
                 is Success<*> -> {
                     val obj = response.data as ContactListEntity
                     obj.run {
                         results.let {
-                            _contactList.value = it
+                            val list = _contactList.value ?: mutableListOf()
+                            list.addAll(it)
+                            _contactList.value = list
                         }
                     }
                 }
                 is Error -> _snackbarText.value = Event(response.message!!)
             }
-            _dataLoading.value = false
+            _refreshingList.value = false
         }
     }
 
-    fun getContactDetails() {
-        viewModelScope.launch {
-            _dataLoading.value = true
-            when (val response = contactsInteractor.getContactDetails()) {
-                is Success<*> -> {
-                    val obj = response.data as ContactDetailEntity
-                    obj.run {
-                        this.let {
-                            _contactDetail.value = it
-                        }
-                    }
-                }
-                is Error -> _snackbarText.value = Event(response.message!!)
-            }
-            _dataLoading.value = false
-        }
+    fun removeContact(contact: ContactEntity) {
+        val list = _contactList.value ?: mutableListOf()
+        list.remove(contact)
+       _contactList.value  = list
     }
 
-    fun goToContactDetails(){
-        _eventGoToDetail.value = Event(Unit)
+    fun goToContactDetails(contact: ContactEntity){
+        _eventGoToDetail.value = Event(contact)
+    }
+
+    fun resetList(){
+        _contactList.value = mutableListOf()
+        _contactListPage.value = 1
+        getContacts()
+    }
+
+    fun nextPage(){
+        _contactListPage.value = contactListPage.value?.plus(1)
+        getContacts()
     }
 }

@@ -9,8 +9,8 @@ class ContactsRemoteDataSource @Inject constructor(
     private val contactsApi: ContactsApiService
 ) : ContactsDataSource {
 
-    override suspend fun getContactsList(): ParseResult {
-        val hola = BaseApiCall().callApi{contactsApi.getContactsList()}
+    override suspend fun getContactsList(page: Int): ParseResult {
+        val hola = BaseApiCall().callApi{contactsApi.getContactsList(page = page)}
         return hola
     }
 

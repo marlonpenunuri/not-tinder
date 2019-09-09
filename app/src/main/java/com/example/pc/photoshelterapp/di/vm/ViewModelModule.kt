@@ -18,5 +18,5 @@ internal abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ContactsViewModel::class)
-    internal abstract fun bindLoginViewModel(loginViewModel: ContactsViewModel): ViewModel
+    internal abstract fun bindLoginViewModel(contactsViewModel: ContactsViewModel): ViewModel
 }

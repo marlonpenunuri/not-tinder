@@ -9,7 +9,7 @@
         android:id="@+id/tutorialFragment"
         android:name="com.example.pc.photoshelterapp.ui.tutorial.TutorialParentFragment"
         android:label="Tutorial Parent Fragment"
-        tools:layout="@layout/fragment_contact_list">
+        tools:layout="@layout/fragment_tutorial_page">
 
         <action
             android:id="@+id/goToContactListFragment"
@@ -29,12 +29,16 @@
             android:id="@+id/goToContactDetailsFragment"
             app:destination="@id/contactDetailsFragment" />
 
+        <argument
+            android:name="contact"
+            app:argType="com.example.pc.photoshelterapp.domain.entities.ContactEntity" />
 
     </fragment>
 
     <fragment
         android:id="@+id/contactDetailsFragment"
         android:name="com.example.pc.photoshelterapp.ui.contacts.ContactDetailsFragment"
-        android:label="Contact Details Fragment" />
+        android:label="Contact Details Fragment"
+        tools:layout="@layout/fragment_contact_details"/>
 
 </navigation>
