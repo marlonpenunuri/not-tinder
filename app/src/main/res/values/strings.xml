@@ -13,7 +13,7 @@
     //Error Strings
     <string name="connection_error">Connection Error</string>
     <string name="host_error">Unknown Server Error</string>
-    <string name="unknown_error">No Result Found</string>
+    <string name="unknown_error">Unknown Error</string>
 
     <string name="not_found_error">Error 404</string>
     <string name="internal_server_error">Error 500</string>
