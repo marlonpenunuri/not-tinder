@@ -6,6 +6,10 @@ import com.example.pc.photoshelterapp.ui.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+/**
+ *Constructs activities subcomponents and their respective dependencies
+ **/
+
 @Module
 abstract class ActivityBuilder {
 

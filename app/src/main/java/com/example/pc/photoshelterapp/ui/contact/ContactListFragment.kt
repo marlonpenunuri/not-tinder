@@ -1,26 +1,19 @@
-package com.example.pc.photoshelterapp.ui.contacts
+package com.example.pc.photoshelterapp.ui.contact
 
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.pc.photoshelterapp.Event
 import com.example.pc.photoshelterapp.R
 import com.example.pc.photoshelterapp.databinding.FragmentContactListBinding
-import com.example.pc.photoshelterapp.domain.entities.ContactEntity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_contact_list.*
-import kotlinx.android.synthetic.main.item_contact.*
 import javax.inject.Inject
 
 class ContactListFragment: DaggerFragment() {
 
     @Inject
-    lateinit var mContactsViewModel: ContactsViewModel
+    lateinit var mContactViewModel: ContactViewModel
     private lateinit var viewDataBinding: FragmentContactListBinding
 
     private lateinit var searchView: MenuItem
@@ -28,8 +21,8 @@ class ContactListFragment: DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewDataBinding = FragmentContactListBinding.inflate(inflater, null, false).apply {
-            viewModel = mContactsViewModel
-            adapter = ContactListAdapter(mContactsViewModel ){ emptyList(it) }
+            viewModel = mContactViewModel
+            adapter = ContactListAdapter(mContactViewModel )
             lifecycleOwner = this@ContactListFragment
         }
         setHasOptionsMenu(true)
@@ -48,10 +41,9 @@ class ContactListFragment: DaggerFragment() {
     }
 
     private fun setObservers(){
-        mContactsViewModel.run {
+        mContactViewModel.run {
             contactList.observe(viewLifecycleOwner, Observer {
-                val sortedList = viewDataBinding.adapter?.sortList(it)
-                viewDataBinding.adapter?.submitList(sortedList)
+                viewDataBinding.adapter?.submitList(it)
             })
 
             refreshingList.observe(viewLifecycleOwner, Observer {
@@ -92,16 +84,5 @@ class ContactListFragment: DaggerFragment() {
 
     }
 
-    private fun emptyList(isEmpty: Boolean) {
-        view?.let {
-            if (isEmpty) {
-                locationsListEmpty.visibility = View.VISIBLE
-                contactsRecycler.visibility = View.INVISIBLE
-            } else {
-                locationsListEmpty.visibility = View.INVISIBLE
-                contactsRecycler.visibility = View.VISIBLE
-            }
-        }
-    }
 
 }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="contact"
-            type="com.example.pc.photoshelterapp.domain.entities.ContactEntity" />
+            name="fullName"
+            type="String" />
 
         <variable
             name="liked"
@@ -44,7 +44,6 @@
                 android:id="@+id/userImageView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:transitionName="imageTransition"
                 app:layout_constraintBottom_toTopOf="@+id/userNameView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,10 +66,9 @@
                 android:id="@+id/userNameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:transitionName="nameTransition"
-                android:text="@{contact.name.first + ' ' + contact.name.last }"
+                android:text="@{fullName}"
                 tools:text="User Name"
-                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

@@ -1,11 +1,11 @@
-package com.example.pc.photoshelterapp.data
+package com.example.pc.photoshelterapp.data.service
 
-import com.example.pc.photoshelterapp.domain.entities.ContactListEntity
+import com.example.pc.photoshelterapp.domain.entity.ContactListEntity
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ContactsApiService {
+interface ContactApiService {
 
     @GET(".")
     suspend fun getContactsList(

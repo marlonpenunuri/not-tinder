@@ -3,6 +3,10 @@ package com.example.pc.photoshelterapp.util
 import android.graphics.*
 import com.squareup.picasso.Transformation
 
+/**
+ *Picasso round images
+ **/
+
 class CropCircleTransformation : Transformation {
     override fun transform(source: Bitmap): Bitmap {
         val size: Int = Math.min(source.width, source.height)

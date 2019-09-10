@@ -3,11 +3,15 @@ package com.example.pc.photoshelterapp.data
 import com.example.pc.photoshelterapp.R
 import retrofit2.Response
 import retrofit2.Retrofit
-import java.io.IOException
 import java.net.ConnectException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
+
+/**
+ *This class is an abstraction for all retrofit Api petitions, it only serves the purpose of
+ *saving code
+**/
 
 open class BaseApiCall {
 
@@ -17,30 +21,21 @@ open class BaseApiCall {
         try {
             val response = call.invoke()
             if (!response.isSuccessful) {
-                return Error(response.message())
-//                val error = parseError(response)
-//                }
+                val errorStringId = when(response.code()){
+                    404 -> R.string.not_found_error
+                    503 -> R.string.service_unavailable_error
+                    else ->R.string.unknown_error
+                }
+                return Error(errorStringId)
             }
             return Success(response.body())
 
         } catch (ex: Exception) {
             return when (ex) {
-                is ConnectException -> Error("Error")
-                is UnknownHostException -> Error("Error")
-                else -> Error("Error")
+                is ConnectException -> Error(R.string.connection_error)
+                is UnknownHostException -> Error(R.string.host_error)
+                else -> Error(R.string.unknown_error)
             }
         }
     }
-
-//    private fun parseError(response: Response<*>): BaseError {
-//        val converter = retrofit.responseBodyConverter<BaseError>(
-//            BaseError::class.java,
-//            BaseError::class.java.annotations
-//        )
-//        return try {
-//            converter.convert(response.errorBody()!!)!!
-//        } catch (e: IOException) {
-//            BaseError()
-//        }
-//    }
 }

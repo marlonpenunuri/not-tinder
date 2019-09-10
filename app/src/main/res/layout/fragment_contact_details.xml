@@ -7,7 +7,11 @@
 
         <variable
             name="contact"
-            type="com.example.pc.photoshelterapp.domain.entities.ContactEntity" />
+            type="com.example.pc.photoshelterapp.domain.entity.ContactEntity" />
+
+        <variable
+            name="fullName"
+            type="String" />
 
     </data>
 
@@ -29,16 +33,23 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".30"/>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
         <ImageView
             android:id="@+id/userImageView"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:transitionName="userImageView"
             app:layout_constraintBottom_toBottomOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            tools:ignore="ContentDescription" />
 
 
         <TextView
@@ -47,9 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="@{contact.name.title + ' ' + contact.name.first + ' ' + contact.name.last }"
+            android:text="@{fullName}"
             android:textSize="40sp"
-            android:transitionName="userNameView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userImageView"
@@ -71,11 +81,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="3320 547484"
-            android:text="@{contact.email}"
+            android:text="@{contact.cell}"
+            android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/userEmailView"
             app:layout_constraintStart_toStartOf="@+id/userEmailView"
             app:layout_constraintTop_toBottomOf="@+id/userEmailView" />
+
+        <ImageView
+            android:id="@+id/facebookBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintStart_toStartOf="@+id/userCellView"
+            app:layout_constraintTop_toBottomOf="@+id/userCellView"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/twitterBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_twitter"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintEnd_toEndOf="@+id/userCellView"
+            app:layout_constraintTop_toBottomOf="@+id/userCellView"
+            tools:ignore="ContentDescription" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

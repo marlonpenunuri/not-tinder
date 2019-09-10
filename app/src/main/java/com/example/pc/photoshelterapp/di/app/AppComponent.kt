@@ -8,6 +8,10 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
+/**
+ *Main component binded to the application itself. Modules provide dependencies for their owner.
+ **/
+
 @Component(
     modules = [AndroidSupportInjectionModule::class,
         ActivityBuilder::class,

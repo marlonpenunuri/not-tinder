@@ -3,7 +3,22 @@
 
     <string-array name="tutorialSteps">
         <item>"Welcome to the best application ever"</item>
-        <item>"This is a very important tutorial"</item>
-        <item>"You can swipe to delete. Press the button"</item>
+        <item>"This is a very brief tutorial"</item>
+        <item>"Long press to delete an element"</item>
     </string-array>
+
+    <string name="button_continue_text">Continue</string>
+    <string name="empty_list_text">No Result Found</string>
+
+    //Error Strings
+    <string name="connection_error">Connection Error</string>
+    <string name="host_error">Unknown Server Error</string>
+    <string name="unknown_error">No Result Found</string>
+
+    <string name="not_found_error">Error 404</string>
+    <string name="internal_server_error">Error 500</string>
+    <string name="service_unavailable_error">Error 503</string>
+
+
+
 </resources>

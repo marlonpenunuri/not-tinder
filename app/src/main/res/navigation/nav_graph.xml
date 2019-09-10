@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/contactListFragment"
-        android:name="com.example.pc.photoshelterapp.ui.contacts.ContactListFragment"
+        android:name="com.example.pc.photoshelterapp.ui.contact.ContactListFragment"
         android:label="Contact List Fragment"
         tools:layout="@layout/fragment_contact_list">
 
@@ -31,13 +31,13 @@
 
         <argument
             android:name="contact"
-            app:argType="com.example.pc.photoshelterapp.domain.entities.ContactEntity" />
+            app:argType="com.example.pc.photoshelterapp.domain.entity.ContactEntity" />
 
     </fragment>
 
     <fragment
         android:id="@+id/contactDetailsFragment"
-        android:name="com.example.pc.photoshelterapp.ui.contacts.ContactDetailsFragment"
+        android:name="com.example.pc.photoshelterapp.ui.contact.ContactDetailsFragment"
         android:label="Contact Details Fragment"
         tools:layout="@layout/fragment_contact_details"/>
 

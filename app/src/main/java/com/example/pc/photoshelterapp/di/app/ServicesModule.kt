@@ -1,21 +1,20 @@
 package com.example.pc.photoshelterapp.di.app
 
-import com.example.pc.photoshelterapp.data.ContactsApiService
+import com.example.pc.photoshelterapp.data.service.ContactApiService
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.OkHttpClient
-
 
 
 @Module
 class ServicesModule {
 
     @Provides
-    fun getContactsMethods(retrofit: Retrofit): ContactsApiService {
-        return retrofit.create(ContactsApiService::class.java)
+    fun getContactMethods(retrofit: Retrofit): ContactApiService {
+        return retrofit.create(ContactApiService::class.java)
     }
 
     @Provides

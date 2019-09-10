@@ -2,11 +2,10 @@ package com.example.pc.photoshelterapp.di.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.pc.photoshelterapp.ui.contacts.ContactsViewModel
+import com.example.pc.photoshelterapp.ui.contact.ContactViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import javax.inject.Singleton
 
 @Suppress("unused")
 @Module
@@ -17,6 +16,6 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ContactsViewModel::class)
-    internal abstract fun bindLoginViewModel(contactsViewModel: ContactsViewModel): ViewModel
+    @ViewModelKey(ContactViewModel::class)
+    internal abstract fun bindLoginViewModel(contactViewModel: ContactViewModel): ViewModel
 }

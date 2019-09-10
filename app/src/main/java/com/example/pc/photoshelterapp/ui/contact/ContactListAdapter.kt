@@ -1,5 +1,6 @@
-package com.example.pc.photoshelterapp.ui.contacts
+package com.example.pc.photoshelterapp.ui.contact
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,18 +8,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pc.photoshelterapp.R
 import com.example.pc.photoshelterapp.databinding.ItemContactBinding
-import com.example.pc.photoshelterapp.domain.entities.ContactEntity
+import com.example.pc.photoshelterapp.domain.entity.ContactEntity
 import com.example.pc.photoshelterapp.util.CropCircleTransformation
 import com.example.pc.photoshelterapp.util.base.BaseListAdapter
 import com.squareup.picasso.Picasso
-import java.util.*
 
 class ContactListAdapter(
-    private var contactsViewModel: ContactsViewModel,
+    private var contactViewModel: ContactViewModel,
     private val isEmptyList: ((Boolean) -> Unit)? = null
 ) : BaseListAdapter<ContactEntity, ContactListAdapter.ContactsViewHolder>(DIFF_UTIL) {
 
 
+    /**
+     *Needed by ListAdapter to compare items and determine if there are changes
+     **/
     companion object {
         @JvmField
         val DIFF_UTIL = object : DiffUtil.ItemCallback<ContactEntity>() {
@@ -26,16 +29,16 @@ class ContactListAdapter(
                 return oldItem.email == newItem.email
             }
 
-            override fun areContentsTheSame(
-                oldItem: ContactEntity,
-                newItem: ContactEntity
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: ContactEntity, newItem: ContactEntity): Boolean {
                 return oldItem == newItem
             }
         }
     }
 
-    val likes = contactsViewModel.likedContacts.value
+    /**
+     *Avoided Local Storage because of time and simplicity
+     **/
+    val likes = contactViewModel.likedContacts.value
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -63,15 +66,15 @@ class ContactListAdapter(
         super.filter(filteredList) { isEmptyList?.invoke(it) }
     }
 
-
+    /**
+     *Sorts list by most recent like before rendering it
+     **/
     override fun submitList(list: List<ContactEntity>?) {
-        super.submitList(list) { isEmptyList?.invoke(it) }
+        val sortedList = list?.sortedWith(compareByDescending { item -> likes?.find { email -> email == item.email} })
+        super.submitList(sortedList) { isEmptyList?.invoke(it) }
     }
 
-    fun sortList(list: List<ContactEntity>): List<ContactEntity> {
-        return list.sortedWith(compareByDescending { item -> likes?.find { x -> item.email == x } })
-    }
-
+    @SuppressLint("DefaultLocale")
     inner class ContactsViewHolder(private val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun setData(item: ContactEntity) {
@@ -79,33 +82,35 @@ class ContactListAdapter(
             with(binding) {
                 clickListener = View.OnClickListener {
                     when (it.id) {
-                        R.id.userCardLayout -> contactsViewModel.goToContactDetails(item)
+                        R.id.userCardLayout -> contactViewModel.goToContactDetails(item)
                         R.id.likeBtn -> {
-                            likes?.find { x -> x == item.email }?.let {
+                            likes?.find { email -> email == item.email }?.let {
                                 liked = false
-                                contactsViewModel.removeLikedContact(item.email)
+                                contactViewModel.removeLikedContact(item.email)
                             } ?: run {
                                 liked = true
-                                contactsViewModel.addLikedContact(item.email)
+                                contactViewModel.addLikedContact(item.email)
                             }
 
                         }
                     }
                 }
                 longClickListener = View.OnLongClickListener {
-                    contactsViewModel.removeLikedContact(item.email)
-                    contactsViewModel.removeContact(item)
+                    contactViewModel.removeLikedContact(item.email)
+                    contactViewModel.removeContact(item)
                     return@OnLongClickListener true
                 }
-                contact = item
-                liked = !likes?.find { x -> x == item.email }.isNullOrEmpty()
-                Picasso.get().load(item.picture.medium).transform(CropCircleTransformation())
+                fullName = "${item.name.first.capitalize()} ${item.name.last.capitalize()}"
+                liked = !likes?.find { email -> email == item.email }.isNullOrEmpty()
+                Picasso.get().load(item.picture.medium)
+                    .transform(CropCircleTransformation())
+                    .placeholder(R.drawable.ic_unknown_user)
                     .into(userImageView)
             }
         }
 
         fun loadNextElements() {
-            contactsViewModel.nextPage()
+            contactViewModel.nextPage()
         }
     }
 

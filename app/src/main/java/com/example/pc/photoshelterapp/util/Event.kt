@@ -1,7 +1,7 @@
-package com.example.pc.photoshelterapp
+package com.example.pc.photoshelterapp.util
 
 /**
- * Used as a wrapper for data that is exposed via a LiveData that represents an event.
+ * Used as a wrapper for events that are exposed via a LiveData
  */
 open class Event<out T>(private val content: T) {
 
@@ -19,9 +19,4 @@ open class Event<out T>(private val content: T) {
             content
         }
     }
-
-    /**
-     * Returns the content, even if it's already been handled.
-     */
-    fun peekContent(): T = content
 }

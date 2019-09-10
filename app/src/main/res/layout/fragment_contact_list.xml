@@ -7,14 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.pc.photoshelterapp.ui.contacts.ContactsViewModel" />
+            type="com.example.pc.photoshelterapp.ui.contact.ContactViewModel" />
 
         <variable
             name="adapter"
-            type="com.example.pc.photoshelterapp.ui.contacts.ContactListAdapter" />
+            type="com.example.pc.photoshelterapp.ui.contact.ContactListAdapter" />
 
     </data>
-
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
@@ -33,14 +32,6 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="15"
                 tools:listitem="@layout/item_contact" />
-
-            <TextView
-                android:id="@+id/locationsListEmpty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="List Empty"
-                android:visibility="gone" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

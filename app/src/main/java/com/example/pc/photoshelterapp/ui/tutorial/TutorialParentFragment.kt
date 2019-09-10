@@ -5,24 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.pc.photoshelterapp.R
 import com.example.pc.photoshelterapp.databinding.FragmentTutorialParentBinding
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_tutorial_parent.*
 
+
+/**
+ *Hosts page fragments, provides tab indicator and gestures
+ **/
+
 class TutorialParentFragment : DaggerFragment() {
 
     private lateinit var viewDataBinding: FragmentTutorialParentBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
+    override fun onCreateView(inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewDataBinding = FragmentTutorialParentBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = lifecycleOwner
-        }
+        viewDataBinding = FragmentTutorialParentBinding.inflate(inflater, container, false)
         return viewDataBinding.root
     }
 

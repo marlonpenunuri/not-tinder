@@ -4,6 +4,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ *Generic listadapter providing reusable code for filtering and list manipulation
+ **/
+
 abstract class BaseListAdapter<T, VH : RecyclerView.ViewHolder>(callback: DiffUtil.ItemCallback<T>) :
     ListAdapter<T, VH>(callback) {
 

@@ -4,22 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.pc.photoshelterapp.R
 import com.example.pc.photoshelterapp.databinding.FragmentTutorialPageBinding
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_tutorial_page.*
 
-class TutorialPageFragment : DaggerFragment() {
 
+/**
+ *Generic fragment with a textview
+ **/
+class TutorialPageFragment : DaggerFragment() {
 
     companion object {
         fun newInstance(step: Int, instruction: String) : TutorialPageFragment {
             return TutorialPageFragment().apply {
                 arguments = Bundle().apply {
-                    putInt("currentStep", step)
+                    putInt("STEP", step)
                     putString("INSTRUCTION", instruction)
                 }
             }
@@ -33,9 +34,7 @@ class TutorialPageFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewDataBinding = FragmentTutorialPageBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = lifecycleOwner
-        }
+        viewDataBinding = FragmentTutorialPageBinding.inflate(inflater, container, false)
         return viewDataBinding.root
     }
 
@@ -44,7 +43,7 @@ class TutorialPageFragment : DaggerFragment() {
 
         arguments?.let {
             pageInstructionText.text = it.getString("INSTRUCTION")
-            if(it.getInt("currentStep")  == 3){
+            if(it.getInt("STEP")  == 3){
                 endTutorialBtn.run {
                     visibility = View.VISIBLE
                     setOnClickListener {

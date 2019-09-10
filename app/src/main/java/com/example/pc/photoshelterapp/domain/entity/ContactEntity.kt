@@ -1,8 +1,5 @@
-package com.example.pc.photoshelterapp.domain.entities
+package com.example.pc.photoshelterapp.domain.entity
 
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
-import com.squareup.picasso.Picasso
 import java.io.Serializable
 
 

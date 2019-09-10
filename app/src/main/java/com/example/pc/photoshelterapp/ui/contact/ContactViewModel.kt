@@ -1,20 +1,20 @@
-package com.example.pc.photoshelterapp.ui.contacts
+package com.example.pc.photoshelterapp.ui.contact
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pc.photoshelterapp.Event
+import com.example.pc.photoshelterapp.data.Error
 import com.example.pc.photoshelterapp.data.Success
-import com.example.pc.photoshelterapp.domain.entities.ContactDetailEntity
-import com.example.pc.photoshelterapp.domain.entities.ContactEntity
-import com.example.pc.photoshelterapp.domain.entities.ContactListEntity
-import com.example.pc.photoshelterapp.domain.interactors.ContactsInteractor
+import com.example.pc.photoshelterapp.domain.entity.ContactEntity
+import com.example.pc.photoshelterapp.domain.entity.ContactListEntity
+import com.example.pc.photoshelterapp.domain.interactor.ContactInteractor
+import com.example.pc.photoshelterapp.util.Event
 import com.example.pc.photoshelterapp.util.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ContactsViewModel @Inject constructor(
-    private val contactsInteractor: ContactsInteractor
+class ContactViewModel @Inject constructor(
+    private val contactsInteractor: ContactInteractor
 ) : BaseViewModel() {
 
 
@@ -31,12 +31,8 @@ class ContactsViewModel @Inject constructor(
         get() = _likedContacts
 
     private val _contactListPage = MutableLiveData<Int>().apply{value = 1}
-    val contactListPage: LiveData<Int>
+    private val contactListPage: LiveData<Int>
         get() = _contactListPage
-
-    private val _contactDetail = MutableLiveData<ContactDetailEntity>()
-    val contactDetail: LiveData<ContactDetailEntity>
-        get() = _contactDetail
 
     private val _refreshingList = MutableLiveData<Boolean>()
     val refreshingList: LiveData<Boolean>
@@ -55,7 +51,7 @@ class ContactsViewModel @Inject constructor(
                         }
                     }
                 }
-                is Error -> _snackbarText.value = Event(response.message!!)
+                is Error -> _snackbarText.value = Event(response.errorMessage)
             }
             _refreshingList.value = false
         }
