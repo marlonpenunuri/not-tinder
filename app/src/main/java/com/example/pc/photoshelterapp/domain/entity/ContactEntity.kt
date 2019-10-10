@@ -3,7 +3,7 @@ package com.example.pc.photoshelterapp.domain.entity
 import java.io.Serializable
 
 
-data class ContactEntity (
+open class ContactEntity (
     val name: NameEntity,
     val picture: PictureEntity,
     val gender: String,
