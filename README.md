@@ -1,9 +1,6 @@
-# PhotoShelterApp
-This project consists of a basic contact list application where the user can filter, like and check detailed information to interact with random contacts. Pressing the smiley face present on each of the cards will place that element at the top of the list, while long-pressing it will remove it entirely. 
+# Quests
 
-The project makes use of the **Model-View-ViewModel** (MVVM) pattern on top of a Single Activity in order to showcase some of the most recent Android ways and to optimize code structure, based on **SOLID principles** and **Clean Architecture**.
-
-# Libraries
+## Libraries
 
  - Dagger 2
  - DataBinding
@@ -14,7 +11,7 @@ The project makes use of the **Model-View-ViewModel** (MVVM) pattern on top of a
  - Navigation Controller
  - LiveData
 
-#  Clean Architecture
+##  Clean Architecture
 The architecture, combined with the SOLID principles offer an uncoupled, easy-to-test, and readable code. It mainly consists of three layers: 
 
 	 1. Presentation or UI Layer
