@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.pc.photoshelterapp.ui.login.LoginFragment"
+        android:name="com.nu9ve.quests.ui.login.LoginFragment"
         android:label="Login Fragment"
         tools:layout="@layout/fragment_login">
 
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/tutorialFragment"
-        android:name="com.example.pc.photoshelterapp.ui.tutorial.TutorialParentFragment"
+        android:name="com.nu9ve.quests.ui.tutorial.TutorialParentFragment"
         android:label="Tutorial Parent Fragment"
         tools:layout="@layout/fragment_tutorial_page">
 
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.pc.photoshelterapp.ui.map.MapFragment"
+        android:name="com.nu9ve.quests.ui.map.MapFragment"
         android:label="Map Fragment"
         tools:layout="@layout/fragment_map">
 
@@ -51,13 +51,13 @@
 
     <fragment
         android:id="@+id/questDetailsFragment"
-        android:name="com.example.pc.photoshelterapp.ui.quests.QuestDetailsFragment"
+        android:name="com.nu9ve.quests.ui.quests.QuestDetailsFragment"
         android:label="Quest Details Fragment"
         tools:layout="@layout/fragment_quests_detail"/>
 
     <fragment
         android:id="@+id/contactListFragment"
-        android:name="com.example.pc.photoshelterapp.ui.contact.ContactListFragment"
+        android:name="com.nu9ve.quests.ui.contact.ContactListFragment"
         android:label="Contact List Fragment"
         tools:layout="@layout/fragment_contact_list">
 
@@ -67,13 +67,13 @@
 
         <argument
             android:name="contact"
-            app:argType="com.example.pc.photoshelterapp.domain.entity.ContactEntity" />
+            app:argType="com.nu9ve.quests.domain.entity.ContactEntity" />
 
     </fragment>
 
     <fragment
         android:id="@+id/contactDetailsFragment"
-        android:name="com.example.pc.photoshelterapp.ui.contact.ContactDetailsFragment"
+        android:name="com.nu9ve.quests.ui.contact.ContactDetailsFragment"
         android:label="Contact Details Fragment"
         tools:layout="@layout/fragment_contact_details"/>
 

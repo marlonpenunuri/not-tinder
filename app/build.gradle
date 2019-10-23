@@ -12,7 +12,7 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.pc.photoshelterapp"
+        applicationId "com.nu9ve.quests"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1

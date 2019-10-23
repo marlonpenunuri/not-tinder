@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.pc.photoshelterapp.ui.contact.ContactViewModel" />
+            type="com.nu9ve.quests.ui.contact.ContactViewModel" />
 
 
 

@@ -7,11 +7,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.pc.photoshelterapp.ui.contact.ContactViewModel" />
+            type="com.nu9ve.quests.ui.contact.ContactViewModel" />
 
         <variable
             name="adapter"
-            type="com.example.pc.photoshelterapp.ui.contact.ContactListAdapter" />
+            type="com.nu9ve.quests.ui.contact.ContactListAdapter" />
 
     </data>
 

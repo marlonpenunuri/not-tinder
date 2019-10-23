@@ -7,7 +7,7 @@
 
         <variable
             name="contact"
-            type="com.example.pc.photoshelterapp.domain.entity.ContactEntity" />
+            type="com.nu9ve.quests.domain.entity.ContactEntity" />
 
         <variable
             name="fullName"
