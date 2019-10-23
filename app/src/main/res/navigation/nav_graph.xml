@@ -3,7 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/tutorialFragment">
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.pc.photoshelterapp.ui.login.LoginFragment"
+        android:label="Login Fragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/goToTutorialFragment"
+            app:destination="@id/tutorialFragment"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/tutorialFragment"
@@ -12,12 +26,34 @@
         tools:layout="@layout/fragment_tutorial_page">
 
         <action
-            android:id="@+id/goToContactListFragment"
-            app:destination="@id/contactListFragment"
+            android:id="@+id/goToMapFragment"
+            app:destination="@id/mapFragment"
             app:popUpTo="@+id/tutorialFragment"
             app:popUpToInclusive="true"/>
 
     </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.pc.photoshelterapp.ui.map.MapFragment"
+        android:label="Map Fragment"
+        tools:layout="@layout/fragment_map">
+
+        <action
+            android:id="@+id/goToContactListFragment"
+            app:destination="@id/contactListFragment"/>
+
+        <action
+            android:id="@+id/goToQuestDetailsFragment"
+            app:destination="@id/questDetailsFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/questDetailsFragment"
+        android:name="com.example.pc.photoshelterapp.ui.quests.QuestDetailsFragment"
+        android:label="Quest Details Fragment"
+        tools:layout="@layout/fragment_quests_detail"/>
 
     <fragment
         android:id="@+id/contactListFragment"

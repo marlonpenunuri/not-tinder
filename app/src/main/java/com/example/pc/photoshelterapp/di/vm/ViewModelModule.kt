@@ -3,6 +3,7 @@ package com.example.pc.photoshelterapp.di.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.pc.photoshelterapp.ui.contact.ContactViewModel
+import com.example.pc.photoshelterapp.ui.login.LoginViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,5 +18,11 @@ internal abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ContactViewModel::class)
-    internal abstract fun bindLoginViewModel(contactViewModel: ContactViewModel): ViewModel
+    internal abstract fun bindContactViewModel(contactViewModel: ContactViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    internal abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 }

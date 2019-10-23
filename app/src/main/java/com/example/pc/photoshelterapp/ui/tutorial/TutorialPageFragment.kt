@@ -43,16 +43,15 @@ class TutorialPageFragment : DaggerFragment() {
 
         arguments?.let {
             pageInstructionText.text = it.getString("INSTRUCTION")
-            if(it.getInt("STEP")  == 3){
+            if(it.getInt("STEP")  == 4){
                 endTutorialBtn.run {
                     visibility = View.VISIBLE
                     setOnClickListener {
-                        findNavController().navigate(R.id.goToContactListFragment)
+                        findNavController().navigate(R.id.goToMapFragment)
                     }
                 }
             }
         }
-
 
     }
 

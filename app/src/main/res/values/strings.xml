@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">PhotoShelterApp</string>
+    <string name="app_name">Quests</string>
 
     <string-array name="tutorialSteps">
-        <item>"Welcome to the best application ever"</item>
-        <item>"This is a very brief tutorial"</item>
-        <item>"Long press to delete an element"</item>
+        <item>"Greetings, traveler"</item>
+        <item>"On this new adventure you will experience many challenges"</item>
+        <item>"Are you ready?"</item>
+        <item>"Welcome\nto\nQUESTS"</item>
     </string-array>
 
     <string name="button_continue_text">Continue</string>

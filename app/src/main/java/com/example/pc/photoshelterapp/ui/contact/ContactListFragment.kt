@@ -2,6 +2,7 @@ package com.example.pc.photoshelterapp.ui.contact
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import com.example.pc.photoshelterapp.R
@@ -34,6 +35,9 @@ class ContactListFragment: DaggerFragment() {
         setHasOptionsMenu(true)
         setObservers()
         setEvents()
+
+        (activity as AppCompatActivity).supportActionBar?.show()
+
         if(viewDataBinding.viewModel?.contactList?.value.isNullOrEmpty()){
             viewDataBinding.viewModel?.getContacts()
         }

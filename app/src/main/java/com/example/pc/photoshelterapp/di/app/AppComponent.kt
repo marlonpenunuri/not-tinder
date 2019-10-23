@@ -1,7 +1,7 @@
 package com.example.pc.photoshelterapp.di.app
 
 import android.content.Context
-import com.example.pc.photoshelterapp.PhotoShelterApp
+import com.example.pc.photoshelterapp.QuestsApp
 import com.example.pc.photoshelterapp.di.vm.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -17,7 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule
         ActivityBuilder::class,
         ServicesModule::class,
         ViewModelModule::class]
-) interface AppComponent : AndroidInjector<PhotoShelterApp> {
+) interface AppComponent : AndroidInjector<QuestsApp> {
 
     @Component.Factory
     interface Factory {

@@ -19,10 +19,7 @@ class TutorialParentFragment : DaggerFragment() {
 
     private lateinit var viewDataBinding: FragmentTutorialParentBinding
 
-    override fun onCreateView(inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewDataBinding = FragmentTutorialParentBinding.inflate(inflater, container, false)
         return viewDataBinding.root
     }
@@ -37,18 +34,16 @@ class TutorialParentFragment : DaggerFragment() {
         val firstFragment = TutorialPageFragment.newInstance(1, instructionsArray[0])
         val secondFragment = TutorialPageFragment.newInstance(2, instructionsArray[1])
         val thirdFragment = TutorialPageFragment.newInstance(3, instructionsArray[2])
+        val fourthFragment = TutorialPageFragment.newInstance(4, instructionsArray[3])
 
         adapter.addFragment(firstFragment, "")
         adapter.addFragment(secondFragment, "")
         adapter.addFragment(thirdFragment, "")
+        adapter.addFragment(fourthFragment, "")
 
         viewPagerLayout.adapter = adapter
 
         tabDots.setupWithViewPager(viewPagerLayout)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        (activity as AppCompatActivity).supportActionBar?.show()
-    }
 }

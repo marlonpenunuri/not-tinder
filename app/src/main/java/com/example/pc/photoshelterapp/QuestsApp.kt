@@ -8,9 +8,9 @@ import dagger.android.DaggerApplication
 /**
  *Application object and Dagger graph initiation
  **/
-class PhotoShelterApp: DaggerApplication() {
+class QuestsApp: DaggerApplication() {
 
-    override fun applicationInjector(): AndroidInjector<out PhotoShelterApp> {
+    override fun applicationInjector(): AndroidInjector<out QuestsApp> {
         return DaggerAppComponent.factory().create(this)
     }
 
